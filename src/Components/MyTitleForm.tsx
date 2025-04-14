@@ -6,7 +6,9 @@ function MyTitleForm() {
   const handlechange = (event: {
     target: { value: SetStateAction<string> };
   }) => {
-    if (event.target.value) {
+    const includeValue = event.target.value;
+    const notValue = includeValue.replace("*", "");
+    if (notValue !== title) {
       setTitle(event.target.value);
     }
   };
@@ -15,7 +17,7 @@ function MyTitleForm() {
     <header>
       <h1>{title}</h1>
       <label htmlFor="title">Title :</label>
-      <input id="title" type="text" onChange={title ? handlechange : title} />
+      <input id="title" type="text" onChange={handlechange} />
     </header>
   );
 }
